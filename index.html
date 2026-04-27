@@ -11,38 +11,36 @@
         .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
         .gold-glow { text-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
         
-        /* RESTORED ROLLOVER EFFECT */
+        /* IDENTITY ROLLOVER */
         .identity-container { position: relative; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; }
         .identity-image { 
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; 
             z-index: 1; 
             filter: grayscale(100%) contrast(1.1); 
-            transition: filter 0.8s ease-in-out, transform 0.8s ease; 
+            transition: filter 0.8s ease-in-out; 
         }
         .identity-container:hover .identity-image { filter: grayscale(0%) contrast(1.1); }
-        
-        /* LIGHTER OVERLAY for detail visibility */
         .identity-overlay { 
             position: absolute; inset: 0; 
             background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); 
             z-index: 2; 
         }
 
-        /* RESPONSIVE TEXT */
-        .hero-title { font-size: clamp(3.5rem, 12vw, 9rem); line-height: 0.85; }
-        .section-title { font-size: clamp(2.5rem, 8vw, 6rem); line-height: 1; }
+        /* FIXED TEXT SCALING */
+        .hero-title { font-size: clamp(3rem, 10vw, 7.5rem); line-height: 0.9; }
+        .section-title { font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1; }
 
         /* CARDS & PILLS */
-        .custom-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s ease; height: 100%; }
+        .custom-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s ease; }
         .training-card:hover { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.03); transform: translateY(-5px); cursor: pointer; }
-        .commitment-panel { background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.1); border-radius: 2.5rem; padding: 3rem; margin-top: 4rem; }
-        .pill { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.7rem 1.8rem; border-radius: 3rem; font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+        .commitment-panel { background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.1); border-radius: 2.5rem; padding: 2.5rem; margin-top: 3rem; }
+        .pill { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.6rem 1.4rem; border-radius: 3rem; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 
         #training-insight { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
         #training-insight.show-me { display: block !important; opacity: 1 !important; }
 
         .contact-orange { background-color: #fca311; color: black; border-radius: 4rem 4rem 0 0; }
-        .contact-input { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 1rem; color: black; font-weight: 500; }
+        .contact-input { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 1rem; color: black; }
     </style>
 </head>
 <body>
@@ -61,9 +59,10 @@
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <img src="images/hero-grace.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover opacity-40">
         <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-black/20"></div>
-        <div class="relative z-10 text-center px-6">
+        <div class="relative z-10 text-center px-6 max-w-5xl">
             <h2 class="text-amber-500 uppercase tracking-[0.5em] font-bold mb-4 text-[10px]">Power for Purpose</h2>
             <h1 class="hero-title font-extrabold mb-6 tracking-tighter gold-glow uppercase italic">WE ARE THE <br><span class="serif-italic font-normal text-amber-500">REVIVAL</span></h1>
+            <p class="text-white/60 text-sm md:text-lg italic font-medium max-w-xl mx-auto border-t border-white/10 pt-6">"Of this gospel I was made a minister according to the gift of God’s grace..."</p>
         </div>
     </section>
 
@@ -81,24 +80,24 @@
     <section id="dna" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black mb-20 tracking-tight uppercase text-center">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="custom-card p-12">
-                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase tracking-tight">Grace-Formed</h3>
-                    <p class="text-white/70 leading-relaxed text-lg italic">Our calling flows from God’s gift, not our merit.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Grace-Formed</h3>
+                    <p class="text-white/70 leading-relaxed italic">Our calling flows from God’s gift, not our merit.</p>
                 </div>
-                <div class="custom-card p-12">
-                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase tracking-tight">Word-Rooted</h3>
-                    <p class="text-white/70 leading-relaxed text-lg italic">Scripture is our foundation, compass, and authority.</p>
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Word-Rooted</h3>
+                    <p class="text-white/70 leading-relaxed italic">Scripture is our foundation, compass, and authority.</p>
                 </div>
-                <div class="custom-card p-12">
-                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase tracking-tight">Mission-Focused</h3>
-                    <p class="text-white/70 leading-relaxed text-lg italic">Every platform becomes a digital pulpit for the gospel.</p>
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Mission-Focused</h3>
+                    <p class="text-white/70 leading-relaxed italic">Every platform becomes a digital pulpit for the gospel.</p>
                 </div>
             </div>
             
             <div class="commitment-panel text-center">
-                <h4 class="text-amber-500 uppercase font-black tracking-[0.3em] text-xs mb-10">We Commit To:</h4>
-                <div class="flex flex-wrap justify-center gap-5">
+                <h4 class="text-amber-500 uppercase font-black tracking-widest text-[10px] mb-8">WE COMMIT TO:</h4>
+                <div class="flex flex-wrap justify-center gap-4">
                     <span class="pill">Study with Depth</span>
                     <span class="pill">Live with Integrity</span>
                     <span class="pill">Teach with Clarity</span>
@@ -114,44 +113,29 @@
             <h2 class="text-5xl font-black tracking-tighter uppercase mb-16 text-center">CHILD-LEVEL <span class="text-amber-500">TRAINING</span></h2>
             <div id="training-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="custom-card training-card p-12" onclick="openPillar(1)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">01</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">Apologetics</h3>
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">01</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Apologetics</h3>
                     <p class="text-white/40 text-sm">Understand and explain truth.</p>
                 </div>
                 <div class="custom-card training-card p-12" onclick="openPillar(2)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">02</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">Worldview Training</h3>
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">02</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Worldview Training</h3>
                     <p class="text-white/40 text-sm">Navigating culture through the Word.</p>
                 </div>
                 <div class="custom-card training-card p-12" onclick="openPillar(3)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">03</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">Digital Discipleship</h3>
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">03</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Digital Discipleship</h3>
                     <p class="text-white/40 text-sm">Raising voices in digital spaces.</p>
-                </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(4)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">04</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">Parent Strategy</h3>
-                    <p class="text-white/40 text-sm">Building foundations at home.</p>
-                </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(5)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">05</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">Reasoning Methods</h3>
-                    <p class="text-white/40 text-sm">How to think, not what to say.</p>
-                </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(6)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-6">06</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-3">The Toolkit</h3>
-                    <p class="text-white/40 text-sm">The "Why I Believe" essential kit.</p>
                 </div>
             </div>
 
             <div id="training-insight" class="mt-16 p-8 md:p-16 bg-white/[0.03] border border-amber-500/30 rounded-[3rem]">
-                <h4 id="display-title" class="text-3xl md:text-4xl font-black text-amber-500 uppercase mb-8"></h4>
-                <div class="grid md:grid-cols-3 gap-8 text-white/70 leading-relaxed text-lg">
+                <h4 id="display-title" class="text-3xl font-black text-amber-500 uppercase mb-8"></h4>
+                <div class="grid md:grid-cols-3 gap-8 text-white/70 leading-relaxed">
                     <p id="p-one"></p><p id="p-two"></p><p id="p-three"></p>
                 </div>
                 <div class="mt-12 text-center">
-                    <button onclick="closePillar()" class="px-10 py-4 border border-amber-500/50 text-amber-500 uppercase font-bold text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">— Read Less</button>
+                    <button onclick="closePillar()" class="px-10 py-4 border border-amber-500/50 text-amber-500 uppercase font-bold text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">Close</button>
                 </div>
             </div>
         </div>
@@ -159,7 +143,7 @@
 
     <section id="contact" class="contact-orange py-32 px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight uppercase">EVERY PLATFORM IS A <br><span class="serif-italic font-bold">MISSION FIELD</span></h2>
+            <h2 class="text-4xl md:text-5xl font-black mb-8 uppercase">EVERY PLATFORM IS A <br><span class="serif-italic font-bold">MISSION FIELD</span></h2>
             <form name="contact" method="POST" data-netlify="true" class="grid md:grid-cols-2 gap-5 text-left max-w-3xl mx-auto">
                 <input type="text" name="name" placeholder="Name" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
                 <input type="email" name="email" placeholder="Email" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
@@ -171,18 +155,15 @@
         </div>
     </section>
 
-    <footer class="py-12 bg-black text-center text-white/10 text-[10px] tracking-[0.8em] uppercase border-t border-white/5">
+    <footer class="py-12 bg-black text-center text-white/10 text-[10px] tracking-[0.8em] uppercase">
         Ephesians 3:7 Generation // 2026
     </footer>
 
     <script>
         const pillarData = {
-            1: { t: "Apologetics", p1: "We introduce children to apologetics in a way that is simple and engaging.", p2: "We break down big questions into clear, relatable ideas for school and online life.", p3: "This builds genuine understanding rather than just repeating memorized answers." },
-            2: { t: "Worldview Training", p1: "We provide a simple framework to evaluate social media and peer influences.", p2: "Children learn to compare everyday messages with biblical truth.", p3: "This develops discernment to navigate culture without following the crowd." },
-            3: { t: "Digital Discipleship", p1: "We train children to engage the digital world as a mission field.", p2: "They learn to create positive content that reflects their values respectfully.", p3: "This shifts them from being mere consumers to being ambassadors of faith." },
-            4: { t: "Parent Strategy", p1: "We support parents with practical tools for consistent growth at home.", p2: "We guide families on how to handle deep questions comfortably.", p3: "This ensures learning becomes a natural part of everyday family life." },
-            5: { t: "Reasoning Methods", p1: "Children need to know how to think clearly, not just what to think.", p2: "We teach simple methods to recognize weak logic and build thoughtful responses.", p3: "This builds confidence when facing challenges or doubts in real situations." },
-            6: { t: "The Toolkit", p1: "A collection of structured questions and frameworks for real conversations.", p2: "This gives children usable tools they can return to whenever needed.", p3: "It ensures learning is practical and ready for immediate use." }
+            1: { t: "Apologetics", p1: "Simple introductions to big questions.", p2: "Relatable ideas for school and online life.", p3: "Building genuine understanding over rote memory." },
+            2: { t: "Worldview Training", p1: "Frameworks to evaluate digital messages.", p2: "Comparing culture with biblical truth.", p3: "Developing discernment for the modern age." },
+            3: { t: "Digital Discipleship", p1: "Engaging the digital world as mission.", p2: "Creating positive, value-based content.", p3: "Shifting from consumers to ambassadors." }
         };
 
         function openPillar(id) {
@@ -197,9 +178,7 @@
         }
 
         function closePillar() {
-            const box = document.getElementById('training-insight');
-            document.getElementById('training-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => box.classList.remove('show-me'), 300);
+            document.getElementById('training-insight').classList.remove('show-me');
         }
     </script>
 </body>
