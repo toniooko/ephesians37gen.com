@@ -12,10 +12,17 @@
         .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
         .gold-glow { text-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
         
+        /* Identity Section - Image Protection Logic */
         .identity-container { position: relative; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; }
-        .identity-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: grayscale(100%) contrast(1.1); transition: filter 0.8s ease-in-out; }
+        .identity-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: grayscale(100%) contrast(1.1); transition: filter 0.8s ease-in-out; object-position: right center; }
         .identity-container:hover .identity-image { filter: grayscale(0%) contrast(1.1); }
-        .identity-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); z-index: 2; }
+        
+        /* The Mask: Deep black on the left for text, completely transparent on the right for the image */
+        .identity-overlay { 
+            position: absolute; inset: 0; 
+            background: linear-gradient(to right, #141414 0%, #141414 30%, rgba(20,20,20,0.8) 45%, transparent 70%); 
+            z-index: 2; 
+        }
 
         .hero-title { font-size: clamp(3rem, 10vw, 7.5rem); line-height: 0.9; }
         .section-title { font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1; }
@@ -59,29 +66,43 @@
     <section id="identity" class="identity-container">
         <img src="images/The Reflection.jpg" alt="Reflection" class="identity-image">
         <div class="identity-overlay"></div>
-        <div class="relative z-10 p-8 md:p-20 max-w-4xl">
-            <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-extrabold mb-4">Identity</p>
-            <h2 class="section-title font-black mb-8 tracking-tighter uppercase gold-glow">THE <span class="text-amber-500">CALLING</span></h2>
-            <p class="text-xl md:text-3xl leading-snug text-white italic font-bold mb-8">"A generation of ministers formed by grace and empowered by His power to carry the gospel boldly into the world."</p>
-            <p class="text-lg leading-relaxed text-white/70 font-light max-w-2xl">Ephesians 3:7 Gen is a movement for young believers rising with clarity, conviction, and power to spread the gospel across the world — especially through digital platforms.</p>
+        <div class="relative z-10 p-8 md:p-20 w-full">
+            <div class="max-w-xl"> <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-extrabold mb-4">The Manifesto</p>
+                <h2 class="section-title font-black mb-8 tracking-tighter uppercase gold-glow">WHO WE <span class="text-amber-500">ARE</span></h2>
+                
+                <p class="text-xl md:text-2xl leading-snug text-white italic font-bold mb-6">
+                    "We refuse to stay silent while a generation scrolls past a gospel they don't understand."
+                </p>
+                <p class="text-lg leading-relaxed text-white/70 font-light mb-8">
+                    There is a generation of young people who love Jesus but feel the church speaks a language they don't understand. We closed that gap by focusing on the critical 9-to-15 age gap—the moment intellectual resistance begins.
+                </p>
+                <div class="border-l-2 border-amber-500 pl-6 py-2">
+                    <p class="text-white/60 text-sm leading-relaxed">
+                        We aren't just telling stories; we are providing evidence. We aren't just sharing verses; we are teaching logic. We transform TikTok, Snapchat, and Instagram from minefields into mission fields.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="dna" class="py-32 px-6">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-black mb-20 tracking-tight uppercase">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-left">
                 <div class="custom-card p-10">
                     <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Grace-Formed</h3>
-                    <p class="text-white/70 leading-relaxed italic">Our calling flows from God’s gift, not our merit.</p>
+                    <p class="text-white/70 leading-relaxed italic mb-4">"Of this gospel I was made a minister according to the gift of God’s grace."</p>
+                    <p class="text-white/40 text-xs">Calling isn't earned; it's a gift. This allows even the quietest child to become a bold voice.</p>
                 </div>
                 <div class="custom-card p-10">
                     <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Word-Rooted</h3>
-                    <p class="text-white/70 leading-relaxed italic">Scripture is our foundation, compass, and authority.</p>
+                    <p class="text-white/70 leading-relaxed italic mb-4">The Bible is our foundation, logic, and authority.</p>
+                    <p class="text-white/40 text-xs">We believe a 13-year-old can defend their faith with evidence when they are deeply rooted in the Word.</p>
                 </div>
                 <div class="custom-card p-10">
-                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Mission-Focused</h3>
-                    <p class="text-white/70 leading-relaxed italic">Every platform becomes a digital pulpit for the gospel.</p>
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Power-Empowered</h3>
+                    <p class="text-white/70 leading-relaxed italic mb-4">His power, working through our creativity.</p>
+                    <p class="text-white/40 text-xs">We don't serve in our own strength. The Holy Spirit is the engine behind our boldness in digital spaces.</p>
                 </div>
             </div>
             
@@ -100,7 +121,9 @@
 
     <section id="training" class="py-32 px-6 bg-black/20 text-center">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black tracking-tighter uppercase mb-16">CHILD-LEVEL <span class="text-amber-500">TRAINING</span></h2>
+            <h2 class="text-5xl font-black tracking-tighter uppercase mb-8">CHILD-LEVEL <span class="text-amber-500">TRAINING</span></h2>
+            <p class="max-w-2xl mx-auto text-white/50 mb-16 text-sm italic">Our 12-module curriculum is designed to move kids from passive consumers to active ambassadors.</p>
+            
             <div id="training-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="custom-card training-card p-12" onclick="openPillar(1)">
                     <div class="text-amber-500/40 text-4xl font-bold mb-4">01</div>
@@ -137,10 +160,8 @@
             <div id="training-insight" class="mt-16 p-8 md:p-16 bg-white/[0.03] border border-amber-500/30 rounded-[3rem] text-left">
                 <h4 id="display-title" class="text-3xl font-black text-amber-500 uppercase mb-4"></h4>
                 <p id="display-subtitle" class="text-xl font-bold italic text-white mb-8 border-b border-white/10 pb-6"></p>
-                <div class="grid md:grid-cols-1 gap-8 text-white/70 leading-relaxed text-lg">
-                    <p id="p-one" class="mb-4"></p>
-                    <p id="p-two" class="mb-4"></p>
-                    <p id="p-three"></p>
+                <div class="text-white/70 leading-relaxed text-lg space-y-6">
+                    <p id="p-one"></p><p id="p-two"></p><p id="p-three"></p>
                 </div>
                 <div class="mt-12 text-center">
                     <button onclick="closePillar()" class="px-10 py-4 border border-amber-500/50 text-amber-500 uppercase font-bold text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">Close Details</button>
@@ -179,50 +200,13 @@
 
     <script>
         const pillarData = {
-            1: { 
-                t: "01 — Apologetics", 
-                s: "A child-friendly way to understand and explain truth.",
-                p1: "We introduce children to apologetics in a way that is simple, engaging, and relevant to their everyday experiences. Instead of overwhelming them with complex arguments, we break down big questions—about God, the Bible, and belief—into clear, relatable ideas they can understand and remember.",
-                p2: "Our approach focuses on building confidence. Children learn how to respond to common questions they encounter in school, online, or among friends. Through guided examples, short lessons, and real-life scenarios, they begin to express what they believe with clarity and calmness.",
-                p3: "Over time, this develops into a strong foundation where they are not just repeating answers, but genuinely understanding and explaining their faith in their own words."
-            },
-            2: { 
-                t: "02 — Worldview Training", 
-                s: "Helping children make sense of today’s world through God’s truth.",
-                p1: "Children today are constantly exposed to different ideas—from social media, entertainment, school, and peers. We help them make sense of these influences by giving them a simple framework to evaluate what they see and hear.",
-                p2: "We teach them how to compare everyday messages with biblical truth, helping them recognise what aligns and what doesn’t. This is done through practical examples drawn from real-life situations they already encounter.",
-                p3: "The goal is to help children develop clarity and discernment, so they can navigate culture confidently without confusion or pressure to simply follow what everyone else is doing."
-            },
-            3: { 
-                t: "03 — Digital Discipleship", 
-                s: "Raising confident voices for Christ in the digital space.",
-                p1: "The digital world is where children spend a significant amount of their time. Rather than pulling them away from it, we train them to engage it with purpose and responsibility.",
-                p2: "We show them how to communicate their beliefs respectfully, respond thoughtfully in conversations, and create simple content that reflects their values. This includes understanding tone, clarity, and how to engage others without hostility.",
-                p3: "By doing this, children begin to see themselves not just as consumers of content, but as positive contributors—able to represent their faith with confidence in any digital environment."
-            },
-            4: { 
-                t: "04 — Parent Strategy", 
-                s: "Equipping families to build strong spiritual foundations at home.",
-                p1: "Parents play the most important role in shaping a child’s understanding of faith. Our goal is to support them with simple, practical tools that make this easier and more consistent.",
-                p2: "We provide guidance on how to continue conversations at home, reinforce key lessons, and create an environment where children feel comfortable asking questions and exploring their beliefs.",
-                p3: "This partnership ensures that learning does not stop with the child, but becomes part of the family’s everyday life—building a stronger and more lasting foundation."
-            },
-            5: { 
-                t: "05 — Reasoning Methods", 
-                s: "Teaching children how to think, not just what to say.",
-                p1: "Memorizing answers is not enough in today’s world. Children need to understand how to think clearly, ask good questions, and examine ideas for themselves.",
-                p2: "We teach simple reasoning methods that help them break down arguments, recognise weak logic, and build thoughtful responses. These methods are introduced in a way that is easy to grasp and apply in real situations.",
-                p3: "As they grow, children become more confident thinkers—able to approach challenges with clarity, rather than confusion or doubt."
-            },
-            6: { 
-                t: "06 — The Toolkit", 
-                s: "The “Why I Believe” starter kit for the next generation.",
-                p1: "The Toolkit is a practical collection of resources designed to support everything we teach. It includes structured questions, guided responses, and simple frameworks that children can use in real conversations.",
-                p2: "Rather than leaving them to figure things out on their own, we equip them with tools they can return to—whether they are responding to a question, creating content, or thinking through an issue.",
-                p3: "This ensures that learning is not just theoretical, but usable—giving children something they can carry with them as they grow in confidence and understanding."
-            }
+            1: { t: "01 — Apologetics", s: "A child-friendly way to understand and explain truth.", p1: "We introduce children to apologetics in a way that is simple, engaging, and relevant to their everyday experiences. Instead of overwhelming them with complex arguments, we break down big questions—about God, the Bible, and belief—into clear, relatable ideas they can understand and remember.", p2: "Our approach focuses on building confidence. Children learn how to respond to common questions they encounter in school, online, or among friends. Through guided examples, short lessons, and real-life scenarios, they begin to express what they believe with clarity and calmness.", p3: "Over time, this develops into a strong foundation where they are not just repeating answers, but genuinely understanding and explaining their faith in their own words." },
+            2: { t: "02 — Worldview Training", s: "Helping children make sense of today’s world through God’s truth.", p1: "Children today are constantly exposed to different ideas—from social media, entertainment, school, and peers. We help them make sense of these influences by giving them a simple framework to evaluate what they see and hear.", p2: "We teach them how to compare everyday messages with biblical truth, helping them recognise what aligns and what doesn’t. This is done through practical examples drawn from real-life situations they already encounter.", p3: "The goal is to help children develop clarity and discernment, so they can navigate culture confidently without confusion or pressure to simply follow what everyone else is doing." },
+            3: { t: "03 — Digital Discipleship", s: "Raising confident voices for Christ in the digital space.", p1: "The digital world is where children spend a significant amount of their time. Rather than pulling them away from it, we train them to engage it with purpose and responsibility.", p2: "We show them how to communicate their beliefs respectfully, respond thoughtfully in conversations, and create simple content that reflects their values. This includes understanding tone, clarity, and how to engage others without hostility.", p3: "By doing this, children begin to see themselves not just as consumers of content, but as positive contributors—able to represent their faith with confidence in any digital environment." },
+            4: { t: "04 — Parent Strategy", s: "Equipping families to build strong spiritual foundations at home.", p1: "Parents play the most important role in shaping a child’s understanding of faith. Our goal is to support them with simple, practical tools that make this easier and more consistent.", p2: "We provide guidance on how to continue conversations at home, reinforce key lessons, and create an environment where children feel comfortable asking questions and exploring their beliefs.", p3: "This partnership ensures that learning does not stop with the child, but becomes part of the family’s everyday life—building a stronger and more lasting foundation." },
+            5: { t: "05 — Reasoning Methods", s: "Teaching children how to think, not just what to say.", p1: "Memorizing answers is not enough in today’s world. Children need to understand how to think clearly, ask good questions, and examine ideas for themselves.", p2: "We teach simple reasoning methods that help them break down arguments, recognise weak logic, and build thoughtful responses. These methods are introduced in a way that is easy to grasp and apply in real situations.", p3: "As they grow, children become more confident thinkers—able to approach challenges with clarity, rather than confusion or doubt." },
+            6: { t: "06 — The Toolkit", s: "The “Why I Believe” starter kit for the next generation.", p1: "The Toolkit is a practical collection of resources designed to support everything we teach. It includes structured questions, guided responses, and simple frameworks that children can use in real conversations.", p2: "Rather than leaving them to figure things out on their own, we equip them with tools they can return to—whether they are responding to a question, creating content, or thinking through an issue.", p3: "This ensures that learning is not just theoretical, but usable—giving children something they can carry with them as they grow in confidence and understanding." }
         };
-
         function openPillar(id) {
             const box = document.getElementById('training-insight');
             const data = pillarData[id];
@@ -234,7 +218,6 @@
             box.classList.add('show-me');
             box.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
         function closePillar() {
             document.getElementById('training-insight').classList.remove('show-me');
             document.getElementById('training-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
