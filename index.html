@@ -1,57 +1,244 @@
-<section id="identity" class="identity-container">
-    <img src="images/The Reflection.jpg" alt="Reflection" class="identity-image">
-    <div class="identity-overlay"></div>
-    <div class="relative z-10 p-8 md:p-20 max-w-5xl">
-        <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-extrabold mb-4">The Manifesto</p>
-        <h2 class="section-title font-black mb-8 tracking-tighter uppercase gold-glow">WHO WE <span class="text-amber-500">ARE</span></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ephesians 3:7 Gen | Power for Purpose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #141414; color: white; scroll-behavior: smooth; margin: 0; }
+        .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+        .gold-glow { text-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
         
-        <div class="grid md:grid-cols-2 gap-12">
-            <div>
-                <p class="text-xl md:text-2xl leading-snug text-white italic font-bold mb-6">
-                    "We refuse to stay silent while a generation scrolls past a gospel they don't understand."
-                </p>
-                <p class="text-lg leading-relaxed text-white/70 font-light">
-                    There is a generation of young people who love Jesus but find typical Christian content boring or disconnected. They have real questions, but no one is giving them answers that make sense. We exist to change that.
-                </p>
+        .identity-container { position: relative; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; }
+        .identity-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: grayscale(100%) contrast(1.1); transition: filter 0.8s ease-in-out; }
+        .identity-container:hover .identity-image { filter: grayscale(0%) contrast(1.1); }
+        .identity-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); z-index: 2; }
+
+        .hero-title { font-size: clamp(3rem, 10vw, 7.5rem); line-height: 0.9; }
+        .section-title { font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1; }
+
+        .custom-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s ease; }
+        .training-card:hover { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.03); transform: translateY(-5px); cursor: pointer; }
+        .pill { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.6rem 1.4rem; border-radius: 3rem; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        #training-insight { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
+        #training-insight.show-me { display: block !important; opacity: 1 !important; }
+
+        .contact-orange { background-color: #fca311; color: black; border-radius: 4rem 4rem 0 0; }
+        .contact-input { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 1rem; color: black; }
+        .social-link { font-size: 1.5rem; color: rgba(255,255,255,0.4); transition: all 0.3s ease; }
+        .social-link:hover { color: #fca311; transform: scale(1.2); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 p-6 flex justify-between items-center bg-black/40 backdrop-blur-md border-b border-white/5">
+        <div class="font-extrabold tracking-tighter text-2xl uppercase">EPHESIANS <span class="text-amber-500">3:7</span> GEN</div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-white/70">
+            <a href="#home" class="hover:text-amber-500 transition">Home</a>
+            <a href="#identity" class="hover:text-amber-500 transition">Who We Are</a>
+            <a href="#dna" class="hover:text-amber-500 transition">DNA</a>
+            <a href="#training" class="hover:text-amber-500 transition">Training</a>
+            <a href="#contact" class="hover:text-amber-500 transition">Join Us</a>
+        </div>
+    </nav>
+
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="images/hero-grace.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-black/20"></div>
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <h2 class="text-amber-500 uppercase tracking-[0.5em] font-bold mb-4 text-[10px]">Power for Purpose</h2>
+            <h1 class="hero-title font-extrabold mb-6 tracking-tighter gold-glow uppercase italic">WE ARE THE <br><span class="serif-italic font-normal text-amber-500">REVIVAL</span></h1>
+            <p class="text-white/60 text-sm md:text-lg italic font-medium max-w-xl mx-auto border-t border-white/10 pt-6">"Of this gospel I was made a minister according to the gift of God’s grace..."</p>
+        </div>
+    </section>
+
+    <section id="identity" class="identity-container">
+        <img src="images/The Reflection.jpg" alt="Reflection" class="identity-image">
+        <div class="identity-overlay"></div>
+        <div class="relative z-10 p-8 md:p-20 max-w-4xl">
+            <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-extrabold mb-4">Identity</p>
+            <h2 class="section-title font-black mb-8 tracking-tighter uppercase gold-glow">THE <span class="text-amber-500">CALLING</span></h2>
+            <p class="text-xl md:text-3xl leading-snug text-white italic font-bold mb-8">"A generation of ministers formed by grace and empowered by His power to carry the gospel boldly into the world."</p>
+            <p class="text-lg leading-relaxed text-white/70 font-light max-w-2xl">Ephesians 3:7 Gen is a movement for young believers rising with clarity, conviction, and power to spread the gospel across the world — especially through digital platforms.</p>
+        </div>
+    </section>
+
+    <section id="dna" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-20 tracking-tight uppercase">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Grace-Formed</h3>
+                    <p class="text-white/70 leading-relaxed italic">Our calling flows from God’s gift, not our merit.</p>
+                </div>
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Word-Rooted</h3>
+                    <p class="text-white/70 leading-relaxed italic">Scripture is our foundation, compass, and authority.</p>
+                </div>
+                <div class="custom-card p-10">
+                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Mission-Focused</h3>
+                    <p class="text-white/70 leading-relaxed italic">Every platform becomes a digital pulpit for the gospel.</p>
+                </div>
             </div>
-            <div class="border-l border-amber-500/30 pl-8">
-                <p class="text-lg leading-relaxed text-white/90 font-medium mb-4">
-                    We focus on the critical 9-to-15 age gap—the moment intellectual resistance begins. 
-                </p>
-                <p class="text-white/60 text-sm leading-relaxed">
-                    We aren't just telling stories; we are providing evidence. We aren't just sharing verses; we are teaching logic. We transform TikTok, Snapchat, and Instagram from minefields into mission fields.
-                </p>
+            
+            <div class="bg-white/5 border border-white/10 rounded-[3rem] p-10 mt-12">
+                <h4 class="text-amber-500 uppercase font-black tracking-widest text-[10px] mb-8">WE COMMIT TO:</h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="pill">Study with Depth</span>
+                    <span class="pill">Live with Integrity</span>
+                    <span class="pill">Teach with Clarity</span>
+                    <span class="pill">Defend with Wisdom</span>
+                    <span class="pill">Spread with Creativity</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="dna" class="py-32 px-6">
-    <div class="max-w-7xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-black mb-20 tracking-tight uppercase">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="custom-card p-10 text-left">
-                <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Grace-Formed</h3>
-                <p class="text-white/70 leading-relaxed italic mb-4">"Of this gospel I was made a minister according to the gift of God’s grace."</p>
-                <p class="text-white/40 text-xs">Calling isn't earned; it's given. This allows the quietest child to become the boldest voice.</p>
+    <section id="training" class="py-32 px-6 bg-black/20 text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-black tracking-tighter uppercase mb-16">CHILD-LEVEL <span class="text-amber-500">TRAINING</span></h2>
+            <div id="training-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="custom-card training-card p-12" onclick="openPillar(1)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">01</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Apologetics</h3>
+                    <p class="text-white/40 text-sm">Understand and explain truth.</p>
+                </div>
+                <div class="custom-card training-card p-12" onclick="openPillar(2)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">02</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Worldview Training</h3>
+                    <p class="text-white/40 text-sm">Making sense of today’s world.</p>
+                </div>
+                <div class="custom-card training-card p-12" onclick="openPillar(3)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">03</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Digital Discipleship</h3>
+                    <p class="text-white/40 text-sm">Voices for Christ in digital spaces.</p>
+                </div>
+                <div class="custom-card training-card p-12" onclick="openPillar(4)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">04</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Parent Strategy</h3>
+                    <p class="text-white/40 text-sm">Spiritual foundations at home.</p>
+                </div>
+                <div class="custom-card training-card p-12" onclick="openPillar(5)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">05</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">Reasoning Methods</h3>
+                    <p class="text-white/40 text-sm">How to think, not what to say.</p>
+                </div>
+                <div class="custom-card training-card p-12" onclick="openPillar(6)">
+                    <div class="text-amber-500/40 text-4xl font-bold mb-4">06</div>
+                    <h3 class="text-xl font-extrabold uppercase mb-2">The Toolkit</h3>
+                    <p class="text-white/40 text-sm">The "Why I Believe" starter kit.</p>
+                </div>
             </div>
-            <div class="custom-card p-10 text-left">
-                <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Word-Rooted</h3>
-                <p class="text-white/70 leading-relaxed italic mb-4">The Bible is our spine, not a decoration.</p>
-                <p class="text-white/40 text-xs">We believe a 13-year-old can defend their faith with logic and evidence when rooted in the Word.</p>
-            </div>
-            <div class="custom-card p-10 text-left">
-                <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Power-Empowered</h3>
-                <p class="text-white/70 leading-relaxed italic mb-4">His power, working in us.</p>
-                <p class="text-white/40 text-xs">We don't serve in our own strength. The Holy Spirit is the engine of our creativity and boldness.</p>
+
+            <div id="training-insight" class="mt-16 p-8 md:p-16 bg-white/[0.03] border border-amber-500/30 rounded-[3rem] text-left">
+                <h4 id="display-title" class="text-3xl font-black text-amber-500 uppercase mb-4"></h4>
+                <p id="display-subtitle" class="text-xl font-bold italic text-white mb-8 border-b border-white/10 pb-6"></p>
+                <div class="grid md:grid-cols-1 gap-8 text-white/70 leading-relaxed text-lg">
+                    <p id="p-one" class="mb-4"></p>
+                    <p id="p-two" class="mb-4"></p>
+                    <p id="p-three"></p>
+                </div>
+                <div class="mt-12 text-center">
+                    <button onclick="closePillar()" class="px-10 py-4 border border-amber-500/50 text-amber-500 uppercase font-bold text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">Close Details</button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div class="max-w-3xl mx-auto mb-16 text-white/60 text-sm">
-    <p class="border-y border-white/10 py-6">
-        <span class="text-amber-500 font-bold uppercase tracking-widest">The Curriculum:</span> 
-        Our 12-module system is built specifically for a digital generation. We teach where the Bible came from, why it can be trusted, and how to spot lies in culture with clarity and confidence.
-    </p>
-</div>
+    <section id="contact" class="contact-orange py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 uppercase">EVERY PLATFORM IS A <br><span class="serif-italic font-bold">MISSION FIELD</span></h2>
+            <form name="contact" method="POST" data-netlify="true" class="grid md:grid-cols-2 gap-5 text-left max-w-3xl mx-auto">
+                <input type="text" name="name" placeholder="Name" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
+                <input type="email" name="email" placeholder="Email" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
+                <textarea name="message" placeholder="Message" rows="4" required class="contact-input p-6 w-full col-span-2 outline-none focus:bg-white/20"></textarea>
+                <div class="col-span-2 text-center mt-6">
+                    <button type="submit" class="px-16 py-6 bg-black text-white font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="py-12 bg-[#141414] border-t border-white/5 flex flex-col items-center">
+        <p class="text-[9px] font-bold tracking-[0.4em] uppercase text-white/30 mb-6">Follow the Movement</p>
+        <div class="flex space-x-10 items-center">
+            <a href="#" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <footer class="py-10 bg-black text-center text-white/10 text-[9px] tracking-[0.6em] uppercase border-t border-white/5">
+        Ephesians 3:7 Generation // 2026
+    </footer>
+
+    <script>
+        const pillarData = {
+            1: { 
+                t: "01 — Apologetics", 
+                s: "A child-friendly way to understand and explain truth.",
+                p1: "We introduce children to apologetics in a way that is simple, engaging, and relevant to their everyday experiences. Instead of overwhelming them with complex arguments, we break down big questions—about God, the Bible, and belief—into clear, relatable ideas they can understand and remember.",
+                p2: "Our approach focuses on building confidence. Children learn how to respond to common questions they encounter in school, online, or among friends. Through guided examples, short lessons, and real-life scenarios, they begin to express what they believe with clarity and calmness.",
+                p3: "Over time, this develops into a strong foundation where they are not just repeating answers, but genuinely understanding and explaining their faith in their own words."
+            },
+            2: { 
+                t: "02 — Worldview Training", 
+                s: "Helping children make sense of today’s world through God’s truth.",
+                p1: "Children today are constantly exposed to different ideas—from social media, entertainment, school, and peers. We help them make sense of these influences by giving them a simple framework to evaluate what they see and hear.",
+                p2: "We teach them how to compare everyday messages with biblical truth, helping them recognise what aligns and what doesn’t. This is done through practical examples drawn from real-life situations they already encounter.",
+                p3: "The goal is to help children develop clarity and discernment, so they can navigate culture confidently without confusion or pressure to simply follow what everyone else is doing."
+            },
+            3: { 
+                t: "03 — Digital Discipleship", 
+                s: "Raising confident voices for Christ in the digital space.",
+                p1: "The digital world is where children spend a significant amount of their time. Rather than pulling them away from it, we train them to engage it with purpose and responsibility.",
+                p2: "We show them how to communicate their beliefs respectfully, respond thoughtfully in conversations, and create simple content that reflects their values. This includes understanding tone, clarity, and how to engage others without hostility.",
+                p3: "By doing this, children begin to see themselves not just as consumers of content, but as positive contributors—able to represent their faith with confidence in any digital environment."
+            },
+            4: { 
+                t: "04 — Parent Strategy", 
+                s: "Equipping families to build strong spiritual foundations at home.",
+                p1: "Parents play the most important role in shaping a child’s understanding of faith. Our goal is to support them with simple, practical tools that make this easier and more consistent.",
+                p2: "We provide guidance on how to continue conversations at home, reinforce key lessons, and create an environment where children feel comfortable asking questions and exploring their beliefs.",
+                p3: "This partnership ensures that learning does not stop with the child, but becomes part of the family’s everyday life—building a stronger and more lasting foundation."
+            },
+            5: { 
+                t: "05 — Reasoning Methods", 
+                s: "Teaching children how to think, not just what to say.",
+                p1: "Memorizing answers is not enough in today’s world. Children need to understand how to think clearly, ask good questions, and examine ideas for themselves.",
+                p2: "We teach simple reasoning methods that help them break down arguments, recognise weak logic, and build thoughtful responses. These methods are introduced in a way that is easy to grasp and apply in real situations.",
+                p3: "As they grow, children become more confident thinkers—able to approach challenges with clarity, rather than confusion or doubt."
+            },
+            6: { 
+                t: "06 — The Toolkit", 
+                s: "The “Why I Believe” starter kit for the next generation.",
+                p1: "The Toolkit is a practical collection of resources designed to support everything we teach. It includes structured questions, guided responses, and simple frameworks that children can use in real conversations.",
+                p2: "Rather than leaving them to figure things out on their own, we equip them with tools they can return to—whether they are responding to a question, creating content, or thinking through an issue.",
+                p3: "This ensures that learning is not just theoretical, but usable—giving children something they can carry with them as they grow in confidence and understanding."
+            }
+        };
+
+        function openPillar(id) {
+            const box = document.getElementById('training-insight');
+            const data = pillarData[id];
+            document.getElementById('display-title').innerText = data.t;
+            document.getElementById('display-subtitle').innerText = data.s;
+            document.getElementById('p-one').innerText = data.p1;
+            document.getElementById('p-two').innerText = data.p2;
+            document.getElementById('p-three').innerText = data.p3;
+            box.classList.add('show-me');
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function closePillar() {
+            document.getElementById('training-insight').classList.remove('show-me');
+            document.getElementById('training-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
