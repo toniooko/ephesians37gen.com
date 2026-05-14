@@ -11,202 +11,219 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #141414; color: white; scroll-behavior: smooth; margin: 0; }
         .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
         .gold-glow { text-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+        .text-shadow-safe { text-shadow: 2px 2px 10px rgba(0,0,0,0.9), 0px 0px 20px rgba(0,0,0,0.6); }
+
+        /* IDENTITY SECTION */
+        .identity-container { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+        .identity-bg-full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .identity-content { position: relative; z-index: 5; width: 100%; padding: 10% 5%; }
+
+        /* CARDS (DNA & TRAINING) */
+        .custom-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.4s ease; }
+        .training-card:hover { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.05); transform: translateY(-10px); cursor: pointer; }
         
-        /* Identity Section - Image Protection Logic */
-        .identity-container { position: relative; width: 100%; min-height: 100vh; overflow: hidden; display: flex; align-items: center; }
-        .identity-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: grayscale(100%) contrast(1.1); transition: filter 0.8s ease-in-out; object-position: right center; }
-        .identity-container:hover .identity-image { filter: grayscale(0%) contrast(1.1); }
-        
-        /* The Mask: Deep black on the left for text, completely transparent on the right for the image */
-        .identity-overlay { 
-            position: absolute; inset: 0; 
-            background: linear-gradient(to right, #141414 0%, #141414 30%, rgba(20,20,20,0.8) 45%, transparent 70%); 
-            z-index: 2; 
-        }
+        /* INTERACTIVE PANEL */
+        #training-insight { display: none; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
+        #training-insight.show-me { display: block !important; opacity: 1 !important; transform: translateY(0); }
 
-        .hero-title { font-size: clamp(3rem, 10vw, 7.5rem); line-height: 0.9; }
-        .section-title { font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1; }
+        /* JOIN THE MOVEMENT REDESIGN */
+        .contact-orange { background-color: #fca311; color: black; padding: 120px 24px; position: relative; }
+        .contact-glass { background: rgba(255, 255, 255, 0.15); backdrop-blur: 20px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 3rem; padding: 60px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
+        .contact-input-new { background: transparent; border: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2); width: 100%; padding: 1rem 0.5rem; outline: none; font-weight: 600; transition: border-color 0.3s; }
+        .contact-input-new:focus { border-color: black; }
+        .contact-input-new::placeholder { color: rgba(0, 0, 0, 0.3); font-weight: 400; }
 
-        .custom-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: all 0.3s ease; }
-        .training-card:hover { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.03); transform: translateY(-5px); cursor: pointer; }
-        .pill { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.6rem 1.4rem; border-radius: 3rem; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+        /* SLENDER FOOTER */
+        .footer-strip { background: black; padding: 1rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); min-height: 60px; }
+        .footer-social-icon { font-size: 1.1rem; color: rgba(255,255,255,0.3); transition: all 0.3s; }
+        .footer-social-icon:hover { color: #fca311; transform: translateY(-2px); }
 
-        #training-insight { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
-        #training-insight.show-me { display: block !important; opacity: 1 !important; }
-
-        .contact-orange { background-color: #fca311; color: black; border-radius: 4rem 4rem 0 0; }
-        .contact-input { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 1rem; color: black; }
-        .social-link { font-size: 1.5rem; color: rgba(255,255,255,0.4); transition: all 0.3s ease; }
-        .social-link:hover { color: #fca311; transform: scale(1.2); }
+        .hero-title { font-size: clamp(3.5rem, 12vw, 8.5rem); line-height: 0.85; }
     </style>
 </head>
 <body>
 
     <nav class="fixed w-full z-50 p-6 flex justify-between items-center bg-black/40 backdrop-blur-md border-b border-white/5">
-        <div class="font-extrabold tracking-tighter text-2xl uppercase">EPHESIANS <span class="text-amber-500">3:7</span> GEN</div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-widest text-white/70">
-            <a href="#home" class="hover:text-amber-500 transition">Home</a>
-            <a href="#identity" class="hover:text-amber-500 transition">Who We Are</a>
-            <a href="#dna" class="hover:text-amber-500 transition">DNA</a>
-            <a href="#training" class="hover:text-amber-500 transition">Training</a>
-            <a href="#contact" class="hover:text-amber-500 transition">Join Us</a>
+        <div class="font-extrabold tracking-tighter text-2xl uppercase italic">EPHESIANS <span class="text-amber-500">3:7</span> GEN</div>
+        <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-widest text-white/60">
+            <a href="#home">Home</a><a href="#identity">Who We Are</a><a href="#dna">DNA</a><a href="#training">Training</a><a href="#contact">Join Us</a>
         </div>
     </nav>
 
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <img src="images/hero-grace.jpg" alt="Hero" class="absolute inset-0 w-full h-full object-cover opacity-40">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-black/20"></div>
-        <div class="relative z-10 text-center px-6 max-w-5xl">
-            <h2 class="text-amber-500 uppercase tracking-[0.5em] font-bold mb-4 text-[10px]">Power for Purpose</h2>
-            <h1 class="hero-title font-extrabold mb-6 tracking-tighter gold-glow uppercase italic">WE ARE THE <br><span class="serif-italic font-normal text-amber-500">REVIVAL</span></h1>
-            <p class="text-white/60 text-sm md:text-lg italic font-medium max-w-xl mx-auto border-t border-white/10 pt-6">"Of this gospel I was made a minister according to the gift of God’s grace..."</p>
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <img src="images/hero-grace.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="relative z-10 text-center px-6">
+            <h2 class="text-amber-500 uppercase tracking-[0.6em] font-black mb-6 text-[10px]">Power for Purpose</h2>
+            <h1 class="hero-title font-extrabold mb-8 gold-glow uppercase italic">WE ARE THE <br><span class="serif-italic font-normal text-amber-500">REVIVAL</span></h1>
         </div>
     </section>
 
     <section id="identity" class="identity-container">
-        <img src="images/The Reflection.jpg" alt="Reflection" class="identity-image">
-        <div class="identity-overlay"></div>
-        <div class="relative z-10 p-8 md:p-20 w-full">
-            <div class="max-w-xl"> <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-extrabold mb-4">The Manifesto</p>
-                <h2 class="section-title font-black mb-8 tracking-tighter uppercase gold-glow">WHO WE <span class="text-amber-500">ARE</span></h2>
-                
-                <p class="text-xl md:text-2xl leading-snug text-white italic font-bold mb-6">
-                    "We refuse to stay silent while a generation scrolls past a gospel they don't understand."
-                </p>
-                <p class="text-lg leading-relaxed text-white/70 font-light mb-8">
-                    There is a generation of young people who love Jesus but feel the church speaks a language they don't understand. We closed that gap by focusing on the critical 9-to-15 age gap—the moment intellectual resistance begins.
-                </p>
-                <div class="border-l-2 border-amber-500 pl-6 py-2">
-                    <p class="text-white/60 text-sm leading-relaxed">
-                        We aren't just telling stories; we are providing evidence. We aren't just sharing verses; we are teaching logic. We transform TikTok, Snapchat, and Instagram from minefields into mission fields.
-                    </p>
-                </div>
+        <img src="images/The Reflection.jpg" class="identity-bg-full">
+        <div class="identity-content">
+            <div class="max-w-2xl text-shadow-safe"> 
+                <p class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-black mb-5">The Manifesto</p>
+                <h2 class="text-6xl font-black mb-10 tracking-tighter uppercase text-white">WHO WE <span class="text-amber-500">ARE</span></h2>
+                <p class="text-2xl leading-tight text-white italic font-bold mb-8">"We refuse to stay silent while a generation scrolls past a gospel they don't understand."</p>
+                <p class="text-lg leading-relaxed text-white font-light">Helping young people grow into clear thinkers and confident believers.</p>
             </div>
         </div>
     </section>
 
-    <section id="dna" class="py-32 px-6">
+    <section id="dna" class="py-40 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-black mb-20 tracking-tight uppercase">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-left">
-                <div class="custom-card p-10">
-                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Grace-Formed</h3>
-                    <p class="text-white/70 leading-relaxed italic mb-4">"Of this gospel I was made a minister according to the gift of God’s grace."</p>
-                    <p class="text-white/40 text-xs">Calling isn't earned; it's a gift. This allows even the quietest child to become a bold voice.</p>
+            <h2 class="text-5xl font-black mb-24 tracking-tighter uppercase italic">OUR SPIRITUAL <span class="text-amber-500">DNA</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+                <div class="custom-card p-12">
+                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase">Grace-Formed</h3>
+                    <p class="text-white/80 leading-relaxed italic">"Of this gospel I was made a minister according to the gift of God’s grace."</p>
                 </div>
-                <div class="custom-card p-10">
-                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Word-Rooted</h3>
-                    <p class="text-white/70 leading-relaxed italic mb-4">The Bible is our foundation, logic, and authority.</p>
-                    <p class="text-white/40 text-xs">We believe a 13-year-old can defend their faith with evidence when they are deeply rooted in the Word.</p>
+                <div class="custom-card p-12">
+                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase">Word-Rooted</h3>
+                    <p class="text-white/80 leading-relaxed italic">The Bible is our anchor, our evidence, and our absolute authority.</p>
                 </div>
-                <div class="custom-card p-10">
-                    <h3 class="text-xl text-amber-500 font-bold mb-4 uppercase">Power-Empowered</h3>
-                    <p class="text-white/70 leading-relaxed italic mb-4">His power, working through our creativity.</p>
-                    <p class="text-white/40 text-xs">We don't serve in our own strength. The Holy Spirit is the engine behind our boldness in digital spaces.</p>
-                </div>
-            </div>
-            
-            <div class="bg-white/5 border border-white/10 rounded-[3rem] p-10 mt-12">
-                <h4 class="text-amber-500 uppercase font-black tracking-widest text-[10px] mb-8">WE COMMIT TO:</h4>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <span class="pill">Study with Depth</span>
-                    <span class="pill">Live with Integrity</span>
-                    <span class="pill">Teach with Clarity</span>
-                    <span class="pill">Defend with Wisdom</span>
-                    <span class="pill">Spread with Creativity</span>
+                <div class="custom-card p-12">
+                    <h3 class="text-2xl text-amber-500 font-bold mb-6 uppercase">Power-Empowered</h3>
+                    <p class="text-white/80 leading-relaxed italic">His power, working through our digital creativity.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="training" class="py-32 px-6 bg-black/20 text-center">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black tracking-tighter uppercase mb-8">CHILD-LEVEL <span class="text-amber-500">TRAINING</span></h2>
-            <p class="max-w-2xl mx-auto text-white/50 mb-16 text-sm italic">Our 12-module curriculum is designed to move kids from passive consumers to active ambassadors.</p>
-            
-            <div id="training-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="custom-card training-card p-12" onclick="openPillar(1)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">01</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">Apologetics</h3>
-                    <p class="text-white/40 text-sm">Understand and explain truth.</p>
+    <section id="training" class="py-40 px-6 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-6xl font-black tracking-tighter uppercase mb-20">THE <span class="text-amber-500">TRAINING</span></h2>
+            <div id="training-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="custom-card training-card p-14" onclick="openPillar(1)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">01</div>
+                    <h3 class="text-xl font-black uppercase mb-3">Apologetics</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Explaining Truth</p>
                 </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(2)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">02</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">Worldview Training</h3>
-                    <p class="text-white/40 text-sm">Making sense of today’s world.</p>
+                <div class="custom-card training-card p-14" onclick="openPillar(2)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">02</div>
+                    <h3 class="text-xl font-black uppercase mb-3">Worldview</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Cultural Discernment</p>
                 </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(3)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">03</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">Digital Discipleship</h3>
-                    <p class="text-white/40 text-sm">Voices for Christ in digital spaces.</p>
+                <div class="custom-card training-card p-14" onclick="openPillar(3)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">03</div>
+                    <h3 class="text-xl font-black uppercase mb-3">Digital Skills</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Digital Discipleship</p>
                 </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(4)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">04</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">Parent Strategy</h3>
-                    <p class="text-white/40 text-sm">Spiritual foundations at home.</p>
+                <div class="custom-card training-card p-14" onclick="openPillar(4)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">04</div>
+                    <h3 class="text-xl font-black uppercase mb-3">Parent Strategy</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Home Foundations</p>
                 </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(5)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">05</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">Reasoning Methods</h3>
-                    <p class="text-white/40 text-sm">How to think, not what to say.</p>
+                <div class="custom-card training-card p-14" onclick="openPillar(5)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">05</div>
+                    <h3 class="text-xl font-black uppercase mb-3">Reasoning</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Clear Thinking</p>
                 </div>
-                <div class="custom-card training-card p-12" onclick="openPillar(6)">
-                    <div class="text-amber-500/40 text-4xl font-bold mb-4">06</div>
-                    <h3 class="text-xl font-extrabold uppercase mb-2">The Toolkit</h3>
-                    <p class="text-white/40 text-sm">The "Why I Believe" starter kit.</p>
+                <div class="custom-card training-card p-14" onclick="openPillar(6)">
+                    <div class="text-amber-500/20 text-5xl font-black mb-6">06</div>
+                    <h3 class="text-xl font-black uppercase mb-3">The Toolkit</h3>
+                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Starter Resources</p>
                 </div>
             </div>
 
-            <div id="training-insight" class="mt-16 p-8 md:p-16 bg-white/[0.03] border border-amber-500/30 rounded-[3rem] text-left">
-                <h4 id="display-title" class="text-3xl font-black text-amber-500 uppercase mb-4"></h4>
-                <p id="display-subtitle" class="text-xl font-bold italic text-white mb-8 border-b border-white/10 pb-6"></p>
-                <div class="text-white/70 leading-relaxed text-lg space-y-6">
+            <div id="training-insight" class="mt-20 p-12 md:p-24 bg-white/[0.03] border border-amber-500/30 rounded-[4rem] text-left">
+                <h4 id="display-title" class="text-4xl font-black text-amber-500 uppercase mb-4"></h4>
+                <p id="display-subtitle" class="text-2xl font-bold italic text-white mb-10 border-b border-white/10 pb-10"></p>
+                <div class="text-white/60 leading-relaxed text-xl space-y-8 font-light">
                     <p id="p-one"></p><p id="p-two"></p><p id="p-three"></p>
                 </div>
-                <div class="mt-12 text-center">
-                    <button onclick="closePillar()" class="px-10 py-4 border border-amber-500/50 text-amber-500 uppercase font-bold text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">Close Details</button>
+                <div class="mt-16 text-center">
+                    <button onclick="closePillar()" class="px-12 py-5 border border-amber-500/40 text-amber-500 uppercase font-black text-[10px] tracking-widest hover:bg-amber-500 hover:text-black transition-all">Close Details</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact-orange py-32 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-black mb-8 uppercase">EVERY PLATFORM IS A <br><span class="serif-italic font-bold">MISSION FIELD</span></h2>
-            <form name="contact" method="POST" data-netlify="true" class="grid md:grid-cols-2 gap-5 text-left max-w-3xl mx-auto">
-                <input type="text" name="name" placeholder="Name" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
-                <input type="email" name="email" placeholder="Email" required class="contact-input p-6 w-full outline-none focus:bg-white/20">
-                <textarea name="message" placeholder="Message" rows="4" required class="contact-input p-6 w-full col-span-2 outline-none focus:bg-white/20"></textarea>
-                <div class="col-span-2 text-center mt-6">
-                    <button type="submit" class="px-16 py-6 bg-black text-white font-black uppercase tracking-widest rounded-2xl hover:scale-105 transition-all">Send Message</button>
+    <section id="contact" class="contact-orange">
+        <div class="max-w-4xl mx-auto">
+            <div class="contact-glass">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-4">JOIN THE <span class="serif-italic">MOVEMENT</span></h2>
+                    <p class="uppercase tracking-widest text-[10px] font-bold opacity-60">Apply for the next training cycle</p>
                 </div>
-            </form>
+                <form class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                    <div class="flex flex-col">
+                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Full Name</label>
+                        <input type="text" placeholder="Your Name" required class="contact-input-new">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Email Address</label>
+                        <input type="email" placeholder="email@address.com" required class="contact-input-new">
+                    </div>
+                    <div class="md:col-span-2 flex flex-col">
+                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Your Mission</label>
+                        <textarea placeholder="Tell us why you want to join..." rows="3" required class="contact-input-new"></textarea>
+                    </div>
+                    <div class="md:col-span-2 text-center pt-8">
+                        <button type="submit" class="px-16 py-6 bg-black text-white font-black uppercase text-[10px] tracking-widest rounded-full hover:scale-105 transition-all shadow-xl">Send Application</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
-    <div class="py-12 bg-[#141414] border-t border-white/5 flex flex-col items-center">
-        <p class="text-[9px] font-bold tracking-[0.4em] uppercase text-white/30 mb-6">Follow the Movement</p>
-        <div class="flex space-x-10 items-center">
-            <a href="#" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="#" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <footer class="footer-strip flex justify-between items-center">
+        <div class="text-[8px] font-bold text-white/20 uppercase tracking-[0.4em]">
+            © Ephesians 3:7 Generation 2026
         </div>
-    </div>
-
-    <footer class="py-10 bg-black text-center text-white/10 text-[9px] tracking-[0.6em] uppercase border-t border-white/5">
-        Ephesians 3:7 Generation // 2026
+        <div class="flex space-x-6">
+            <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-social-icon"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
     </footer>
 
     <script>
         const pillarData = {
-            1: { t: "01 — Apologetics", s: "A child-friendly way to understand and explain truth.", p1: "We introduce children to apologetics in a way that is simple, engaging, and relevant to their everyday experiences. Instead of overwhelming them with complex arguments, we break down big questions—about God, the Bible, and belief—into clear, relatable ideas they can understand and remember.", p2: "Our approach focuses on building confidence. Children learn how to respond to common questions they encounter in school, online, or among friends. Through guided examples, short lessons, and real-life scenarios, they begin to express what they believe with clarity and calmness.", p3: "Over time, this develops into a strong foundation where they are not just repeating answers, but genuinely understanding and explaining their faith in their own words." },
-            2: { t: "02 — Worldview Training", s: "Helping children make sense of today’s world through God’s truth.", p1: "Children today are constantly exposed to different ideas—from social media, entertainment, school, and peers. We help them make sense of these influences by giving them a simple framework to evaluate what they see and hear.", p2: "We teach them how to compare everyday messages with biblical truth, helping them recognise what aligns and what doesn’t. This is done through practical examples drawn from real-life situations they already encounter.", p3: "The goal is to help children develop clarity and discernment, so they can navigate culture confidently without confusion or pressure to simply follow what everyone else is doing." },
-            3: { t: "03 — Digital Discipleship", s: "Raising confident voices for Christ in the digital space.", p1: "The digital world is where children spend a significant amount of their time. Rather than pulling them away from it, we train them to engage it with purpose and responsibility.", p2: "We show them how to communicate their beliefs respectfully, respond thoughtfully in conversations, and create simple content that reflects their values. This includes understanding tone, clarity, and how to engage others without hostility.", p3: "By doing this, children begin to see themselves not just as consumers of content, but as positive contributors—able to represent their faith with confidence in any digital environment." },
-            4: { t: "04 — Parent Strategy", s: "Equipping families to build strong spiritual foundations at home.", p1: "Parents play the most important role in shaping a child’s understanding of faith. Our goal is to support them with simple, practical tools that make this easier and more consistent.", p2: "We provide guidance on how to continue conversations at home, reinforce key lessons, and create an environment where children feel comfortable asking questions and exploring their beliefs.", p3: "This partnership ensures that learning does not stop with the child, but becomes part of the family’s everyday life—building a stronger and more lasting foundation." },
-            5: { t: "05 — Reasoning Methods", s: "Teaching children how to think, not just what to say.", p1: "Memorizing answers is not enough in today’s world. Children need to understand how to think clearly, ask good questions, and examine ideas for themselves.", p2: "We teach simple reasoning methods that help them break down arguments, recognise weak logic, and build thoughtful responses. These methods are introduced in a way that is easy to grasp and apply in real situations.", p3: "As they grow, children become more confident thinkers—able to approach challenges with clarity, rather than confusion or doubt." },
-            6: { t: "06 — The Toolkit", s: "The “Why I Believe” starter kit for the next generation.", p1: "The Toolkit is a practical collection of resources designed to support everything we teach. It includes structured questions, guided responses, and simple frameworks that children can use in real conversations.", p2: "Rather than leaving them to figure things out on their own, we equip them with tools they can return to—whether they are responding to a question, creating content, or thinking through an issue.", p3: "This ensures that learning is not just theoretical, but usable—giving children something they can carry with them as they grow in confidence and understanding." }
+            1: { 
+                t: "01 — Apologetics", 
+                s: "A child-friendly way to understand and explain truth.",
+                p1: "We introduce children to apologetics in a way that is simple, engaging, and relevant. Instead of overwhelming them with complex arguments, we break down big questions about God and the Bible into relatable ideas.",
+                p2: "Our approach builds confidence. Children learn how to respond to common questions they encounter in school or online, helping them express what they believe with clarity and calmness.",
+                p3: "Over time, this develops a foundation where they aren't just repeating answers, but genuinely explaining their faith in their own words." 
+            },
+            2: { 
+                t: "02 — Worldview Training", 
+                s: "Helping children make sense of today’s world through God’s truth.",
+                p1: "Children are constantly exposed to different ideas from social media and peers. We help them make sense of these influences with a simple framework to evaluate what they see and hear.",
+                p2: "We teach them to compare everyday messages with biblical truth, recognizing what aligns and what doesn’t using practical, real-life examples.",
+                p3: "The goal is clarity and discernment, allowing children to navigate culture confidently without pressure to simply follow the crowd."
+            },
+            3: { 
+                t: "03 — Digital Discipleship", 
+                s: "Raising confident voices for Christ in the digital space.",
+                p1: "The digital world is where children spend significant time. We train them to engage it with purpose and responsibility rather than pulling away.",
+                p2: "We show them how to communicate respectfully, respond thoughtfully, and create content that reflects their values, focusing on tone and clarity.",
+                p3: "Children begin to see themselves as positive contributors—able to represent their faith with confidence in any digital environment."
+            },
+            4: { 
+                t: "04 — Parent Strategy", 
+                s: "Equipping families to build strong spiritual foundations at home.",
+                p1: "Parents play the vital role in shaping a child’s faith. We support them with practical tools that make consistent spiritual leadership easier.",
+                p2: "We provide guidance on how to continue conversations at home, reinforcing lessons in an environment where kids feel comfortable asking deep questions.",
+                p3: "This partnership ensures learning becomes part of everyday family life, building a lasting foundation beyond the classroom."
+            },
+            5: { 
+                t: "05 — Reasoning Methods", 
+                s: "Teaching children how to think, not just what to say.",
+                p1: "Memorizing answers isn't enough. Children need to understand how to think clearly, ask good questions, and examine ideas for themselves.",
+                p2: "We teach simple reasoning methods that help them break down arguments and recognize weak logic, introduced in a way that is easy to apply.",
+                p3: "As they grow, children become more confident thinkers—able to approach challenges with clarity rather than confusion."
+            },
+            6: { 
+                t: "06 — The Toolkit", 
+                s: "The “Why I Believe” starter kit for the next generation.",
+                p1: "The Toolkit is a collection of resources designed to support everything we teach, including structured questions and simple frameworks for real conversations.",
+                p2: "Rather than leaving them to figure it out alone, we equip them with tools they can return to when responding to questions or creating content.",
+                p3: "This ensures learning is usable—giving children something they can carry with them as they grow in understanding."
+            }
         };
+
         function openPillar(id) {
             const box = document.getElementById('training-insight');
             const data = pillarData[id];
@@ -218,6 +235,7 @@
             box.classList.add('show-me');
             box.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+
         function closePillar() {
             document.getElementById('training-insight').classList.remove('show-me');
             document.getElementById('training-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
