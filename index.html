@@ -146,18 +146,18 @@
                     <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-4">JOIN THE <span class="serif-italic">MOVEMENT</span></h2>
                     <p class="uppercase tracking-widest text-[10px] font-bold opacity-60">Apply for the next training cycle</p>
                 </div>
-                <form class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                <form action="https://formspree.io/f/mwvdlqjp" method="POST" class="grid md:grid-cols-2 gap-x-12 gap-y-10">
                     <div class="flex flex-col">
                         <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Full Name</label>
-                        <input type="text" placeholder="Your Name" required class="contact-input-new">
+                        <input type="text" name="name" placeholder="Your Name" required class="contact-input-new">
                     </div>
                     <div class="flex flex-col">
                         <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Email Address</label>
-                        <input type="email" placeholder="email@address.com" required class="contact-input-new">
+                        <input type="email" name="email" placeholder="email@address.com" required class="contact-input-new">
                     </div>
                     <div class="md:col-span-2 flex flex-col">
                         <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Your Mission</label>
-                        <textarea placeholder="Tell us why you want to join..." rows="3" required class="contact-input-new"></textarea>
+                        <textarea name="message" placeholder="Tell us why you want to join..." rows="3" required class="contact-input-new"></textarea>
                     </div>
                     <div class="md:col-span-2 text-center pt-8">
                         <button type="submit" class="px-16 py-6 bg-black text-white font-black uppercase text-[10px] tracking-widest rounded-full hover:scale-105 transition-all shadow-xl">Send Application</button>
