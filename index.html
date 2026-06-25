@@ -142,27 +142,34 @@
     <section id="contact" class="contact-orange">
         <div class="max-w-4xl mx-auto">
             <div class="contact-glass">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-4">JOIN THE <span class="serif-italic">MOVEMENT</span></h2>
-                    <p class="uppercase tracking-widest text-[10px] font-bold opacity-60">Apply for the next training cycle</p>
+                <div id="contact-wrapper">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-4">JOIN THE <span class="serif-italic">MOVEMENT</span></h2>
+                        <p class="uppercase tracking-widest text-[10px] font-bold opacity-60">Apply for the next training cycle</p>
+                    </div>
+                    <form id="movement-form" class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        <!-- Web3Forms Access Key Integration -->
+                        <input type="hidden" name="access_key" value="85f30c5d-db4b-4e0e-8e70-54b751b91c98">
+                        <!-- Anti-Spam Honeypot -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div class="flex flex-col">
+                            <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Full Name</label>
+                            <input type="text" name="name" placeholder="Your Name" required class="contact-input-new">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Email Address</label>
+                            <input type="email" name="email" placeholder="email@address.com" required class="contact-input-new">
+                        </div>
+                        <div class="md:col-span-2 flex flex-col">
+                            <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Your Mission</label>
+                            <textarea name="message" placeholder="Tell us why you want to join..." rows="3" required class="contact-input-new"></textarea>
+                        </div>
+                        <div class="md:col-span-2 text-center pt-8">
+                            <button type="submit" id="submit-btn" class="px-16 py-6 bg-black text-white font-black uppercase text-[10px] tracking-widest rounded-full hover:scale-105 transition-all shadow-xl">Send Application</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="https://formspree.io/f/mwvdlqjp" method="POST" class="grid md:grid-cols-2 gap-x-12 gap-y-10">
-                    <div class="flex flex-col">
-                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Full Name</label>
-                        <input type="text" name="name" placeholder="Your Name" required class="contact-input-new">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Email Address</label>
-                        <input type="email" name="email" placeholder="email@address.com" required class="contact-input-new">
-                    </div>
-                    <div class="md:col-span-2 flex flex-col">
-                        <label class="text-[9px] uppercase tracking-widest font-black mb-2 opacity-40">Your Mission</label>
-                        <textarea name="message" placeholder="Tell us why you want to join..." rows="3" required class="contact-input-new"></textarea>
-                    </div>
-                    <div class="md:col-span-2 text-center pt-8">
-                        <button type="submit" class="px-16 py-6 bg-black text-white font-black uppercase text-[10px] tracking-widest rounded-full hover:scale-105 transition-all shadow-xl">Send Application</button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
@@ -240,6 +247,56 @@
             document.getElementById('training-insight').classList.remove('show-me');
             document.getElementById('training-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // Modern, No-Redirect Background Form Handler
+        const form = document.getElementById('movement-form');
+        const btn = document.getElementById('submit-btn');
+        const wrapper = document.getElementById('contact-wrapper');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200) {
+                    // Inline success state replacing form seamlessly
+                    wrapper.innerHTML = `
+                        <div class="text-center py-12 animate-fade-in">
+                            <div class="w-20 h-20 bg-black text-[#fca311] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg text-3xl">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h2 class="text-4xl font-black uppercase italic tracking-tighter mb-4 text-black">Application Received!</h2>
+                            <p class="font-semibold text-black/70 max-w-md mx-auto leading-relaxed">Thank you for connecting. We have securely delivered your mission details and will reach out to you directly via email.</p>
+                        </div>
+                    `;
+                } else {
+                    console.log(res);
+                    alert("Something went wrong. Please try again.");
+                    btn.innerText = "Send Application";
+                    btn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Form submission failed. Please check your internet connection.");
+                btn.innerText = "Send Application";
+                btn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
